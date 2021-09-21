@@ -2,11 +2,6 @@ var currentDayHeader = document.querySelector("#currentDay");
 var today = moment(); 
 var description = document.querySelector(".description")
 
-var nineAM = document.querySelector("#nineAM")
-var nineAMValue = $('#nineAM').val()
-
-var tenAM = document.querySelector("#tenAM")
-
 var saveBtn = document.querySelector(".saveBtn")
 
 $(currentDayHeader).text(today.format('dddd, MMMM Do, YYYY'));
@@ -14,42 +9,89 @@ $(currentDayHeader).text(today.format('dddd, MMMM Do, YYYY'));
 var tasks = {};
 
 
+// 9 AM Save Button function
 $(document).ready(function () {
-
-  //This function called when the saveBtn is clicked
-  $(".saveBtn").click(function() {
-    // val() method is used to get the values from
-    // textarea and stored in txt variable
+  $("#nineAMSaveBtn").click(function() {
+    // val() and trim() methods are used to get the values from
+    // textarea and stored in ""Text variable
     var nineAMText = $("#nineAM").val().trim();
+    // set the key/value pair in localStorage
+    localStorage.setItem('nineAMText', nineAMText);
+  })
+});
+
+// 10 AM Save Button function
+$(document).ready(function () {
+  $("#tenAMSaveBtn").click(function() {
     var tenAMText = $("#tenAM").val().trim();
+    localStorage.setItem('tenAMText', tenAMText);
+  })
+});
+
+// 11 AM Save Button function
+$(document).ready(function () {
+  $("#elevenAMSaveBtn").click(function() {
     var elevenAMText = $("#elevenAM").val().trim();
+    localStorage.setItem('elevenAMText', elevenAMText);
+  })
+});
+
+// 12 PM Save Button function
+$(document).ready(function () {
+  $("#twelvePMSaveBtn").click(function() {
     var twelvePMText = $("#twelvePM").val().trim();
+    localStorage.setItem('twelvePMText', twelvePMText);
+  })
+});
+
+// 1 PM Save Button function
+$(document).ready(function () {
+  $("#onePMSaveBtn").click(function() {
     var onePMText = $("#onePM").val().trim();
+    localStorage.setItem('onePMText', onePMText);
+  })
+});
+
+// 2 PM Save Button function
+$(document).ready(function () {
+  $("#twoPMSaveBtn").click(function() {
     var twoPMText = $("#twoPM").val().trim();
+    localStorage.setItem('twoPMText', twoPMText);
+  })
+});
+
+// 3 PM Save Button function
+$(document).ready(function () {
+  $("#threePMSaveBtn").click(function() {
     var threePMText = $("#threePM").val().trim();
+    localStorage.setItem('threePMText', threePMText);
+  })
+});
+
+// 4 PM Save Button function
+$(document).ready(function () {
+  $("#fourPMSaveBtn").click(function() {
     var fourPMText = $("#fourPM").val().trim();
+    localStorage.setItem('fourPMText', fourPMText);
+  })
+});
+
+// 5 PM Save Button function
+$(document).ready(function () {
+  $("#fivePMSaveBtn").click(function() {
     var fivePMText = $("#fivePM").val().trim();
-
-
-    // set the item in localStorage
-    localStorage.setItem('nineAMText', nineAMText)
-    localStorage.setItem('tenAMText', tenAMText)
-    localStorage.setItem('elevenAMText', elevenAMText)
-    localStorage.setItem('twelvePMText', twelvePMText)
-    localStorage.setItem('onePMText', onePMText)
-    localStorage.setItem('twoPMText', twoPMText)
-    localStorage.setItem('threePMText', threePMText)
-    localStorage.setItem('fourPMText', fourPMText)
-    localStorage.setItem('fivePMText', fivePMText)
-    
-    // console log the value to check if we got it
-    console.log(localStorage.getItem('elevenAMText'));
-    console.log(localStorage.getItem('twelvePMText'));
-
-  });
+    localStorage.setItem('fivePMText', fivePMText);
+  })
 });
 
 
+
+
+
+
+
+
+// localStorage get values for each scheduled time textarea
 function nineAMGetValue() {
   var storedText = localStorage.getItem("nineAMText")
   if(storedText != null){
@@ -130,7 +172,6 @@ function fivePMGetValue() {
     document.querySelector("#fivePM").value = ""
   }
 }
-
 
 
 
