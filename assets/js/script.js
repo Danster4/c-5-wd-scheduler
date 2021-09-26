@@ -1,10 +1,25 @@
 var currentDayHeader = document.querySelector("#currentDay");
+var currentTimeHeader = document.querySelector("#currentTime");
 var today = moment(); 
 var description = document.querySelector(".description")
-
+console.log(today.format('H'))
 var saveBtn = document.querySelector(".saveBtn")
 
 $(currentDayHeader).text(today.format('dddd, MMMM Do, YYYY'));
+$(currentTimeHeader).text(today.format('h:mm a'));
+
+var currentTime = moment().format('h')
+
+var nineAMTime = moment().set('hour', '9')
+var tenAMTime = moment().set('hour', '10')
+var elevenAMTime = moment().set('hour', '11')
+var twelveAMTime = moment().set('hour', '12')
+var onePMTime = moment().set('hour', '13')
+var twoPMTime = moment().set('hour', '14')
+var threePMTime = moment().set('hour', '15')
+var fourPMTime = moment().set('hour', '16')
+var fivePMTime = moment().set('hour', '17')
+
 
 var tasks = {};
 
@@ -173,15 +188,44 @@ function fivePMGetValue() {
   }
 }
 
+// figur eout how to assign ucrrent hour to actual current hour
+
+$(document).ready(function () {
+
+  if (currentTime > nineAMTime ) {
+    nineAM.classList.add("past")
+  } else if (currentTime == nineAMTime) {
+    nineAM.classList.add("present")
+  } else {
+    nineAM.classList.add("future")
+  };
+
+  if (currentTime > tenAMTime ) {
+    tenAM.classList.add("past")
+  } else if (currentTime == tenAMTime) {
+    tenAM.classList.add("present")
+  } else {
+    tenAM.classList.add("future")
+  };
+
+  if (currentTime > elevenAMTime ) {
+    elevenAM.classList.add("past")
+  } else if (currentTime == elevenAMTime) {
+    elevenAM.classList.add("present")
+  } else {
+    elevenAM.classList.add("future")
+  };
+});
 
 
-
-
-// function to reload page every 5 minutes to recheck if task is late
+// // function to reload page every 1 minute to recheck if task is late     x3
 setInterval(function () {
-  var nineAMUpdate = $()
   location.reload();
-}, (1000 * 60) * 5);
+}, (1000 * 60) * 1);
+
+
+// googl: jquery.attr method
+
 
 
 // var timeIndicator = function() {
@@ -207,12 +251,23 @@ setInterval(function () {
 //   //   }
 // };
 
+// determine current hour and compare to hour in calendar
 
 
 
 
 
+// $(document).ready(function () {
+//   $(".saveBtn").click(function() {
+//     // var nineAMText = $("#nineAM").val().trim();
+//     // localStorage.setItem('nineAMText', nineAMText);
+//     // console.log($(this).parent().parent().children()[1].textContent.trim())
+//     console.log($(this).closest("textarea"))
 
+
+  
+//   })
+// });
 
 
 
