@@ -1,24 +1,25 @@
 var currentDayHeader = document.querySelector("#currentDay");
 var currentTimeHeader = document.querySelector("#currentTime");
 var today = moment(); 
-var description = document.querySelector(".description")
-console.log(today.format('H'))
-var saveBtn = document.querySelector(".saveBtn")
+var description = document.querySelector(".description");
+
+var deleteAllTasks = document.querySelector(".delete-all-tasks");
+var saveBtn = document.querySelector(".saveBtn");
 
 $(currentDayHeader).text(today.format('dddd, MMMM Do, YYYY'));
 $(currentTimeHeader).text(today.format('h:mm a'));
 
-var currentTime = moment().format('h')
 
-var nineAMTime = moment().set('hour', '9')
-var tenAMTime = moment().set('hour', '10')
-var elevenAMTime = moment().set('hour', '11')
-var twelveAMTime = moment().set('hour', '12')
-var onePMTime = moment().set('hour', '13')
-var twoPMTime = moment().set('hour', '14')
-var threePMTime = moment().set('hour', '15')
-var fourPMTime = moment().set('hour', '16')
-var fivePMTime = moment().set('hour', '17')
+var nineAMTime = moment().hours(9);
+var tenAMTime = moment().hours(10);
+var elevenAMTime = moment().hours(11);
+var twelvePMTime = moment().hours(12);
+var onePMTime = moment().hours(13);
+var twoPMTime = moment().hours(14);
+var threePMTime = moment().hours(15);
+var fourPMTime = moment().hours(16);
+var fivePMTime = moment().hours(17);
+var sixPMTime = moment().hours(18);
 
 
 var tasks = {};
@@ -188,87 +189,96 @@ function fivePMGetValue() {
   }
 }
 
-// figur eout how to assign ucrrent hour to actual current hour
 
-$(document).ready(function () {
 
-  if (currentTime > nineAMTime ) {
-    nineAM.classList.add("past")
-  } else if (currentTime == nineAMTime) {
-    nineAM.classList.add("present")
+var auditTime = function() {
+   // Set nineAM color based on time of current day
+   if (moment().isBetween(nineAMTime, tenAMTime)) {
+    $("#nineAM").addClass("present");
+  } else if (moment().isAfter(tenAMTime)) {
+    $("#nineAM").addClass("past");
   } else {
-    nineAM.classList.add("future")
+    $("#nineAM").addClass("future");
   };
 
-  if (currentTime > tenAMTime ) {
-    tenAM.classList.add("past")
-  } else if (currentTime == tenAMTime) {
-    tenAM.classList.add("present")
+  if (moment().isBetween(tenAMTime, elevenAMTime)) {
+    $("#tenAM").addClass("present");
+  } else if (moment().isAfter(elevenAMTime)) {
+    $("#tenAM").addClass("past");
   } else {
-    tenAM.classList.add("future")
+    $("#tenAM").addClass("future");
   };
 
-  if (currentTime > elevenAMTime ) {
-    elevenAM.classList.add("past")
-  } else if (currentTime == elevenAMTime) {
-    elevenAM.classList.add("present")
+  if (moment().isBetween(elevenAMTime, twelvePMTime)) {
+    $("#elevenAM").addClass("present");
+  } else if (moment().isAfter(twelvePMTime)) {
+    $("#elevenAM").addClass("past");
   } else {
-    elevenAM.classList.add("future")
+    $("#elevenAM").addClass("future");
   };
-});
+
+  if (moment().isBetween(twelvePMTime, onePMTime)) {
+    $("#twelvePM").addClass("present");
+  } else if (moment().isAfter(onePMTime)) {
+    $("#twelvePM").addClass("past");
+  } else {
+    $("#twelvePM").addClass("future");
+  };
+
+  if (moment().isBetween(onePMTime, twoPMTime)) {
+    $("#onePM").addClass("present");
+  } else if (moment().isAfter(twoPMTime)) {
+    $("#onePM").addClass("past");
+  } else {
+    $("#onePM").addClass("future");
+  };
+
+  if (moment().isBetween(twoPMTime, threePMTime)) {
+    $("#twoPM").addClass("present");
+  } else if (moment().isAfter(threePMTime)) {
+    $("#twoPM").addClass("past");
+  } else {
+    $("#twoPM").addClass("future");
+  };
+
+  if (moment().isBetween(threePMTime, fourPMTime)) {
+    $("#threePM").addClass("present");
+  } else if (moment().isAfter(fourPMTime)) {
+    $("#threePM").addClass("past");
+  } else {
+    $("#threePM").addClass("future");
+  };
+
+  if (moment().isBetween(fourPMTime, fivePMTime)) {
+    $("#fourPM").addClass("present");
+  } else if (moment().isAfter(fivePMTime)) {
+    $("#fourPM").addClass("past");
+  } else {
+    $("#fourPM").addClass("future");
+  };
+
+  if (moment().isBetween(fivePMTime, sixPMTime)) {
+    $("#fivePM").addClass("present");
+  } else if (moment().isAfter(sixPMTime)) {
+    $("#fivePM").addClass("past");
+  } else {
+    $("#fivePM").addClass("future");
+  };
+}
 
 
-// // function to reload page every 1 minute to recheck if task is late     x3
+// function to reload page every 1 minute to recheck if task is late 
 setInterval(function () {
+  auditTime();
   location.reload();
-}, (1000 * 60) * 1);
+}, (1000 * 60));
 
 
-// googl: jquery.attr method
-
-
-
-// var timeIndicator = function() {
-//   // get date from task element
-//   var descriptionEntered = $(".description").find("textarea").text().trim();
-//   // to ensure it worked
-//   console.log(descriptionEntered);
-
-//   // // convert to moment object at 5:00pm
-//   // var time = moment(date, "L").set("hour", 17);
-//   // // this should print out an object for the value of the date variable, but at 5:00pm of that date
-//   // console.log(time);
-
-//   //  // remove any old classes from element
-//   //  $(taskEl).removeClass("list-group-item-warning list-group-item-danger");
-
-//   //  // apply new class if task is near/over due date
-//   //  if (moment().isAfter(time)) {
-//   //    $(taskEl).addClass("list-group-item-danger");
-//   //  }
-//   //   else if (Math.abs(moment().diff(time, "days")) <= 2) {
-//   //     $(taskEl).addClass("list-group-item-warning");
-//   //   }
-// };
-
-// determine current hour and compare to hour in calendar
-
-
-
-
-
-// $(document).ready(function () {
-//   $(".saveBtn").click(function() {
-//     // var nineAMText = $("#nineAM").val().trim();
-//     // localStorage.setItem('nineAMText', nineAMText);
-//     // console.log($(this).parent().parent().children()[1].textContent.trim())
-//     console.log($(this).closest("textarea"))
-
-
-  
-//   })
-// });
-
+deleteAllTasks.addEventListener("click", function(){
+  localStorage.clear();
+  location.reload();
+  return;
+})
 
 
 
@@ -284,6 +294,6 @@ threePMGetValue()
 fourPMGetValue()
 fivePMGetValue()
 
-
+auditTime();
 
 

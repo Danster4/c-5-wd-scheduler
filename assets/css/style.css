@@ -10,7 +10,7 @@ textarea {
   resize: none;
   color: #000000;
   border-left: 1px solid black;
-  padding: 10px;
+  
 }
 
 .jumbotron {
@@ -72,6 +72,11 @@ textarea {
   transition: all .3s ease-in-out;
 }
 
+.lead {
+  margin-top: 25px;
+}
+
 #currentDay {
   margin-top: 25px;
 }
+

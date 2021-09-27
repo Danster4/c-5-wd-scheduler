@@ -28,4 +28,4 @@ GIVEN I am using a daily planner to create a schedule
   * THEN the saved events persist
 
 ## Screenshot:
-<insert here>
+[![c-5-wd-scheduler-screenshot.png](https://i.postimg.cc/9MZG5Vnm/c-5-wd-scheduler-screenshot.png)](https://postimg.cc/dkQ7GMFp)
